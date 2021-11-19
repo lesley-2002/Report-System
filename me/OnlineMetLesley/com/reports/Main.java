@@ -1,4 +1,4 @@
-package me.OnlineMetlesley.com;
+package me.OnlineMetlesley.com.reports;
 
 import java.util.Iterator;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -11,6 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Main extends JavaPlugin
 {
     public void onEnable() {
+        this.saveConfig();
     }
     
     public void onDisable() {
@@ -19,7 +20,7 @@ public class Main extends JavaPlugin
     public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
         final Player player = (Player)sender;
         final FileConfiguration config = this.getConfig();
-        if (cmd.getName().equalsIgnoreCase("bug") && sender instanceof Player) {
+        if (cmd.getName().equalsIgnoreCase("bug")) {
             if (args.length >= 1) {
                 String bugMessage = "";
                 for (final String arg : args) {
@@ -39,8 +40,8 @@ public class Main extends JavaPlugin
             }
             return true;
         }
-        if (!cmd.getName().equalsIgnoreCase("bugs") || !(sender instanceof Player)) {
-            if (cmd.getName().equalsIgnoreCase("delbug") && sender instanceof Player) {
+        if (!cmd.getName().equalsIgnoreCase("bugs")) {
+            if (cmd.getName().equalsIgnoreCase("delbug")) {
                 if (args.length == 1 && player.hasPermission("reports.delbugs")) {
                     if (config.contains(args[0].toLowerCase())) {
                         config.set(args[0].toLowerCase(), (Object)null);

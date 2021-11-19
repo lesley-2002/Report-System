@@ -48,8 +48,8 @@ public class Main extends JavaPlugin
             return true;
         }
         if (!cmd.getName().equalsIgnoreCase("bugs")) {
-            if (cmd.getName().equalsIgnoreCase("delbug")) {
-                if (args.length == 1 && player.hasPermission("reports.delbugs")) {
+            if ((cmd.getName().equalsIgnoreCase("delbug") | player.isOp()) && args.length == 1) {
+                if (player.hasPermission("reports.delbugs")) {
                     if (config.contains(args[0].toLowerCase())) {
                         config.set(args[0].toLowerCase(), (Object)null);
                         this.saveConfig();

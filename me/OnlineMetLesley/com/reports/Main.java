@@ -6,10 +6,17 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Main extends JavaPlugin
 {
+    MetricsLite metrics;
+    
+    public Main() {
+        this.metrics = new MetricsLite((Plugin)this);
+    }
+    
     public void onEnable() {
         this.saveConfig();
     }
